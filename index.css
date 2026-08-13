@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: radial-gradient(circle at 1px 1px, rgba(18, 24, 27, 0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background-color: #2f6f5e;
+  color: #f6f4ef;
+}
+
+/* Signature element: a scan line that sweeps to signal ATS parsing/scoring */
+@keyframes scan-sweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(2400%);
+  }
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #2f6f5e, transparent);
+  animation: scan-sweep 3.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after {
+    animation: none;
+    display: none;
+  }
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #2f6f5e;
+  outline-offset: 2px;
+}
